@@ -1,0 +1,41 @@
+Steps to compile the code -
+The project is built using maven. The pom.xml file is attached in the source.zip. If maven is installed 
+on your system, you can simply perform a "mvn clean" followed by a "mvn install".
+The final jar will be in the folder "target" in the same folder where you ran the mvn commands.
+
+
+Steps to run the server -
+
+1) Copy the boltdb-0.0.1-SNAPSHOT.jar, dgrep and boltdb.prop files into a folder.
+2) cd into the folder to which you copied the above files.
+3) Run the command - "./dgrep -startServer 1 6789"
+	*	Here, 1 is the serverId and 6789 is the port number. 
+	*	While starting the server on different machines, you need to specify different serverIds. 
+	*	If you are running multiple servers on localhost, you need to specify different serverId 
+		and different port for each server.
+
+
+Steps to run the client -
+1) Copy the boltdb-0.0.1-SNAPSHOT.jar, dgrep and boltdb.prop files into a folder (If you have already 
+   copied these files in the previous step (while running the server), you should be fine.
+2) cd into the folder to which you copied the above files.
+5) Edit the boltdb.prop file to add the ipaddress and port details of the servers in the system.
+3) Run the command - "./dgrep -key <keyRegExp> -value <valRegExp>
+	*	Here <keyRegExp> and <valRegExp> are the key and value regular expressions that you wish
+		to search.
+
+Steps to run the unit tests -
+
+1) Copy the boltdb-0.0.1-SNAPSHOT.jar, dgrep and boltdb.prop files into a folder (If you have already 
+   copied these files in the previous steps (while running the server/client) you should be fine.
+2) Copy the folder unit_tests(along with its subfolders) to the folder in which you have the above files.
+3) Run the command - "java -cp boltdb-0.0.1-SNAPSHOT.jar edu.uiuc.boltdb.logquerier.LogQuerierTest -generateLogs"
+	*	This command generates 3 log files in the current folder
+4) Make sure you start 3 servers (with ids 1, 2 and 3) on the same machine or different machines on EWS.
+5) Edit the boltdb.prop file to add the ipaddress and port details of these 3 servers.
+6) Run the command - "java -cp boltdb-0.0.1-SNAPSHOT.jar edu.uiuc.boltdb.logquerier.LogQuerierTest unit_test_1
+	*	You can also run the command with "unit_test_2" or "unit_test_3" options
+	*	You can add your own unit tests by creating a folder with the unit test name under "unit_tests/"
+		and creating a unit_test.prop file inside the newly created folder. Add your key and value regular
+		expressions as two properties into this file.
+
